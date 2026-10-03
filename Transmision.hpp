@@ -18,7 +18,7 @@ class Transmision{
     public:
         Transmision(Estacion_Terrestre* e, Satelite* s, std::string datos);
         ~Transmision();
-        int calcDuracion();
+        int calc_duracion();
         int calcTP();
         int calcEC();
         void ejecutar();

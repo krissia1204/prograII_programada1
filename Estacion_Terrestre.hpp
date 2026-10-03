@@ -12,10 +12,14 @@ class Estacion_Terrestre{
         int max;
         Satelite* satelites[];
     public:
-        Estacion_Terrestre();
+        Estacion_Terrestre(std:: string cod, std:: string nom, std:: string ubi);
         ~Estacion_Terrestre();
-        void agregar_Enlace(Satelite* sat) ; 
-        void eliminar_Enlace(std::string cod_Sat);
+        bool agregar_enlace(Satelite* sat) ; 
+        void eliminar_enlace(std::string cod_sat);
         void listar_sat();
+
+        std::string obtener_cod();
+        std::string obtener_nombre();
+        std:: string obtener_ubi();
 };
 #endif
