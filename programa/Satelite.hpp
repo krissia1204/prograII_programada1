@@ -16,14 +16,12 @@ class Satelite{
         int cobertura;
         double historial_bateria[12];
         double historial_temperatura[12];
-        int cantidadMuestras;
+        int cantidad_muestras;
 
     public:
         Satelite(std:: string cod, std:: string nom, int tipo, 
             int masa,int altitud, int capcidad_e , double batt,
-            double potencia, int ancho_banda  ){
-
-            }
+            double potencia, int ancho_banda  );
         ~Satelite();
         void agregar_muestra(double b, double t);
         double calc_radio_orbital() const;
@@ -31,7 +29,7 @@ class Satelite{
         double calc_periodo_orbitalM() const;
         std:: string obtener_estado();
         void consumir_energia(double e);
-        void recargarSolar(double potencia, double tiempo,double eficiencia);
+        void recarga_solar(double potencia, double tiempo,double eficiencia);
         void mostrar_h_telemetria();
         double calc_prom_temp() const;
         double obtener_min_temp()const;
@@ -44,6 +42,11 @@ class Satelite{
         //getters y setters
 
         std::string obtener_cod();
+        std:: string obtener_nom();
+        double obtener_bateria();
+        int obtener_tipo();
+        int obtener_cant_muestras();
+        int obtener_capacidadE();
 
 
 

@@ -17,9 +17,12 @@ Satelite:: Satelite(std:: string cod, std:: string nom, int tipo,
                 this-> ancho_banda= ancho_banda;
                 this->resolucion= 0;
                 this->cobertura= 0;
-                this->historial_bateria[12]= {};
-                this->historial_temperatura[12]= {};
-                this->cantidadMuestras= 0;
+                this->cantidad_muestras= 0;
+
+                for(int i=0; i<12;i++){
+                    historial_bateria[i]=0;
+                    historial_temperatura[i]=0;
+                }
             }
 Satelite:: ~Satelite(){
 
@@ -30,9 +33,10 @@ void Satelite :: agregar_muestra(double b, double t){
         if(historial_bateria[i]==0 && historial_temperatura[i]==0){
             historial_bateria[i]=b;
             historial_temperatura[i]=t;
-            this->cantidadMuestras++;
+            this->cantidad_muestras++;
+            return;
         }
-        else if(cantidadMuestras=12){
+        else if(cantidad_muestras==12){
             std:: cout<<"Maximo de muestras alcanzado."<<std::endl;
         }
     }
@@ -84,12 +88,12 @@ void Satelite:: consumir_energia(double e){
     this->bateria-e;
 }
 
- void Satelite:: recargarSolar(double potencia, double tiempo,double eficiencia){
+ void Satelite:: recarga_solar(double potencia, double tiempo,double eficiencia){
 
         double recarga= potencia*(tiempo/3600)*eficiencia;
 
-        if(bateria>100){
-            std::cout<<"BATERIA TOTALMENTE CARGADA, NO SE PUEDE REALIZAR RECARGA";
+        if(bateria+recarga>100){
+            std::cout<<"NO SE PUEDE REALIZAR RECARGA, BATERIA SUPERA 100%";
         }
         else{
             bateria+=recarga;
@@ -97,11 +101,13 @@ void Satelite:: consumir_energia(double e){
  }
 
 void Satelite:: mostrar_h_telemetria(){
-    for(int i=0;i<12;i++){
-        std::cout<<"MUESTRA N° "<<i+1<<std::endl;
+    for(int i=0;i<cantidad_muestras;i++){
+        if(historial_bateria[i]!=0&&historial_temperatura[i]!=0){
+            std::cout<<"MUESTRA N° "<<i+1<<std::endl;
 
-        std::cout<<"BATERIA: "<<historial_bateria[i]<<std::endl;
-        std::cout<<"TEMPERATURA: "<<historial_temperatura[i]<<std::endl;
+            std::cout<<"BATERIA: "<<historial_bateria[i]<<std::endl;
+            std::cout<<"TEMPERATURA: "<<historial_temperatura[i]<<std::endl;
+        }
     }
 
  }
@@ -179,6 +185,27 @@ void Satelite:: mostrar_info(){
     <<"Capacidad energetica: "<<capacidadE<<std::endl
     <<"Bateria actual: "<<bateria<<std::endl;
 }
+
+std::string Satelite:: obtener_cod(){
+    return codigo;
+}
+std:: string Satelite:: obtener_nom(){
+    return nombre;
+}
+double Satelite:: obtener_bateria(){
+    return bateria;
+}
+int Satelite:: obtener_tipo(){
+    return tipo;
+}
+int Satelite:: obtener_cant_muestras(){
+    return cantidad_muestras;
+}
+
+int Satelite:: obtener_capacidadE(){
+    return capacidadE;
+}
+
 
 
 

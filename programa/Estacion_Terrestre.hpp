@@ -9,8 +9,8 @@ class Estacion_Terrestre{
         std::string codigo;
         std::string nombre;
         std:: string ubicacion;
-        int max;
-        Satelite* satelites[];
+        static const int max= 5;
+        Satelite* satelites[max];
     public:
         Estacion_Terrestre(std:: string cod, std:: string nom, std:: string ubi);
         ~Estacion_Terrestre();

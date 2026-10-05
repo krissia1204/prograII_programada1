@@ -8,8 +8,8 @@ class Orbita{
         std::string codigo;
         std::string nombre;
         int altitud_ref;
-        int max_satelites;
-        Satelite* satelites[];
+        static const int max_satelites=5;
+        Satelite* satelites[max_satelites];
     public:
         Orbita(std::string cod, std::string nom, int alt);
         ~Orbita();

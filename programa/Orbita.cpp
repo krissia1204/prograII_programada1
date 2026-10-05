@@ -7,8 +7,7 @@ Orbita:: Orbita(std::string cod, std::string nom, int alt){
     this->codigo= cod;
     this->nombre= nom;
     this->altitud_ref= alt;
-    this-> max_satelites= 10; //tarea no especifica
-    this->satelites [max_satelites];
+    for(int i=0;i<max_satelites;i++){satelites[i]=nullptr;}
 
 }
 
@@ -17,22 +16,18 @@ Orbita:: ~Orbita(){
 }
 
 bool Orbita:: asignarSatelite(Satelite* sat){
-
     bool encontrado= false;
-
     for(int i= 0; i<max_satelites;i++){
         if(satelites[i]==nullptr){
+            
             satelites[i]= sat;
             encontrado= true;
             return encontrado;
         }
     }
 
-    if(!encontrado){
-        std::cout<<"No hay espacio"<<std::endl;
-        return encontrado;
-    }
-    
+    std::cout<<"No hay espacio"<<std::endl;
+    return encontrado;  
 }
 
 bool Orbita:: contiene_sat(std:: string cod){
@@ -40,7 +35,7 @@ bool Orbita:: contiene_sat(std:: string cod){
     for(int i= 0; i<this->max_satelites; i++){
         if(satelites[i]->obtener_cod()==cod){
             encontrado = true;
-            return;
+            return encontrado;
         }
     }
     return encontrado;

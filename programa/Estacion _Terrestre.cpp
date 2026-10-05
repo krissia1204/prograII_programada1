@@ -6,8 +6,7 @@ Estacion_Terrestre:: Estacion_Terrestre(std:: string cod, std:: string nom, std:
     this->codigo= cod;
     this->nombre=nom;
     this->ubicacion= ubi;
-    this->max= 10;
-    this->satelites[max];
+    for(int i=0;i<max;i++){satelites[i]=nullptr;}
 }
 
 Estacion_Terrestre:: ~Estacion_Terrestre(){
@@ -21,7 +20,7 @@ bool Estacion_Terrestre:: agregar_enlace(Satelite* sat){
         if(satelites[i]==nullptr){
             satelites[i]= sat;
             encontrado= true;
-            return ;
+            return encontrado;
         }
     }
 
@@ -50,8 +49,10 @@ void Estacion_Terrestre:: eliminar_enlace(std::string cod_sat){
 void Estacion_Terrestre:: listar_sat(){
     std::cout<<"Satelites en Estacion Terrestre"<<nombre<<": "<<std::endl;
     for(int i=0; i<max;i++){
-        std::cout<<i+1<<"-";
-        satelites[i]->mostrar_info();
+        if(satelites[i]!=nullptr){
+            std::cout<<i+1<<"-";
+            satelites[i]->mostrar_info();
+        }
     }
 }
 
